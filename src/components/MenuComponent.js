@@ -69,7 +69,7 @@ import {
 
 function RenderMenuItem({ dish, onClick }) {
   return (
-    <div className="col-12 col-md-5 m-4 border rounded">
+    <div>
       <Card onClick={() => onClick(dish.id)}>
         <CardImg width="100%" src={dish.image} alt={dish.name} />
         <CardImgOverlay>
@@ -83,7 +83,7 @@ function RenderMenuItem({ dish, onClick }) {
 const Menu = (props) => {
   const menu = props.dishes.map((dish) => {
     return (
-      <div className="col-12 col-md-5 m-1" key={dish.id}>
+      <div className="col-12 col-md-5 m-4 border rounded" key={dish.id}>
         <RenderMenuItem dish={dish} onClick={props.onClick} />
       </div>
     );
