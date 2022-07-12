@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import {
-  Media,
   Card,
   CardImg,
   CardImgOverlay,
-  CardText,
-  CardBody,
   CardTitle,
+  Breadcrumb,
+  BreadcrumbItem,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 // class Menu extends Component {
 //   //  Move to DishDetailComponent ---------------------------------
@@ -70,12 +70,20 @@ import {
 function RenderMenuItem({ dish, onClick }) {
   return (
     <div>
-      {/* <Card onClick={() => onClick(dish.id)}> */}
-      <Card>
+      {/* <Card onClick={() => onClick(dish.id)}>
         <CardImg width="100%" src={dish.image} alt={dish.name} />
         <CardImgOverlay>
           <CardTitle>{dish.name}</CardTitle>
         </CardImgOverlay>
+      </Card> */}
+
+      <Card>
+        <Link to={`/menu/${dish.id}`}>
+          <CardImg width="100%" src={dish.image} alt={dish.name} />
+          <CardImgOverlay>
+            <CardTitle>{dish.name}</CardTitle>
+          </CardImgOverlay>
+        </Link>
       </Card>
     </div>
   );
@@ -90,8 +98,25 @@ const Menu = (props) => {
     );
   });
 
+  // return (
+  //   <div className="container">
+  //     <div className="row justify-content-center">{menu}</div>
+  //   </div>
+  // );
   return (
     <div className="container">
+      <div className="row">
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/home">Home</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>Menu</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="col-12">
+          <h3>Menu</h3>
+          <hr />
+        </div>
+      </div>
       <div className="row justify-content-center">{menu}</div>
     </div>
   );
