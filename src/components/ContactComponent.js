@@ -12,7 +12,7 @@ import {
   FormFeedback,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Control, LocalForm, Errors } from "react-redux-form";
+import { Control, LocalForm, Errors, actions } from "react-redux-form";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -64,6 +64,7 @@ class Contact extends Component {
   handleSubmit(values) {
     console.log("Current State is: " + JSON.stringify(values));
     alert("Current State is: " + JSON.stringify(values));
+    this.props.resetFeedbackForm();
     // event.preventDefault();
   }
 
@@ -306,63 +307,11 @@ class Contact extends Component {
                 </Col>
               </FormGroup>
             </Form> */}
-            <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
-              {/* <Row className="form-group">
-                <Label htmlFor="firstname" md={2}>
-                  First Name
-                </Label>
-                <Col md={10}>
-                  <Control.text
-                    model=".firstname"
-                    id="firstname"
-                    name="firstname"
-                    placeholder="First Name"
-                    className="form-control"
-                  />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Label htmlFor="lastname" md={2}>
-                  Last Name
-                </Label>
-                <Col md={10}>
-                  <Control.text
-                    model=".lastname"
-                    id="lastname"
-                    name="lastname"
-                    placeholder="Last Name"
-                    className="form-control"
-                  />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Label htmlFor="telnum" md={2}>
-                  Contact Tel.
-                </Label>
-                <Col md={10}>
-                  <Control.text
-                    model=".telnum"
-                    id="telnum"
-                    name="telnum"
-                    placeholder="Tel. Number"
-                    className="form-control"
-                  />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Label htmlFor="email" md={2}>
-                  Email
-                </Label>
-                <Col md={10}>
-                  <Control.text
-                    model=".email"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
-                    className="form-control"
-                  />
-                </Col>
-              </Row> */}
+            {/* <LocalForm onSubmit={(values) => this.handleSubmit(values)}> */}
+              <Form
+              model="feedback"
+              onSubmit={(values) => this.handleSubmit(values)}
+            >
               <Row className="form-group">
                 <Label htmlFor="firstname" md={2}>
                   First Name
@@ -525,7 +474,8 @@ class Contact extends Component {
                   </Button>
                 </Col>
               </Row>
-            </LocalForm>
+            {/* </LocalForm> */}
+            </Form>
           </div>
         </div>
       </div>
