@@ -20,7 +20,7 @@ import { Control, LocalForm, Errors } from "react-redux-form";
 
 import { Loading } from "./LoadingComponent";
 
-import { baseUrl } from '../shared/baseUrl';
+import { baseUrl } from "../shared/baseUrl";
 
 // class Dishdetail extends Component {
 //   // renderDish(dish) {
@@ -108,7 +108,13 @@ class CommentForm extends Component {
     this.toggleModal();
     // console.log("Current State is: " + JSON.stringify(values));
     // alert("Current State is: " + JSON.stringify(values));
-    this.props.addComment(
+    // this.props.addComment(
+    //   this.props.dishId,
+    //   values.rating,
+    //   values.author,
+    //   values.comment
+    // );
+    this.props.postComment(
       this.props.dishId,
       values.rating,
       values.author,
@@ -224,11 +230,11 @@ function RenderDish({ dish }) {
   );
 }
 
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({ comments, postComment, dishId }) {
   if (comments != null) {
     return (
-      <div>
-        <h2>Comments</h2>
+      <div className="col-12 col-md-5 m-1">
+        <h4 class="mb-2 text-info">Comments</h4>
         <ul className="list-unstyled">
           {comments.map((comment) => {
             return (
@@ -247,7 +253,8 @@ function RenderComments({ comments, addComment, dishId }) {
           })}
         </ul>
         {/* <CommentForm /> */}
-        <CommentForm dishId={dishId} addComment={addComment} />
+        {/* <CommentForm dishId={dishId} addComment={addComment} /> */}
+        <CommentForm dishId={dishId} postComment={postComment} />
       </div>
     );
   } else {
@@ -301,7 +308,8 @@ const Dishdetail = (props) => {
             {/* <RenderComments comments={props.comments} /> */}
             <RenderComments
               comments={props.comments}
-              addComment={props.addComment}
+              // addComment={props.addComment}
+              postComment={props.postComment}
               dishId={props.dish.id}
             />
           </div>
